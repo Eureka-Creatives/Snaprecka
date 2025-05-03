@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 export default function UserLayout() {
   return (
-    <main>
+    <main className="flex items-center min-w-full min-h-screen">
       <AppSidebar />
 
       <Outlet />
