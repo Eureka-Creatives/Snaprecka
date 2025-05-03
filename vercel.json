@@ -24,7 +24,7 @@
         },
         {
             "src": "/(.*)",
-            "dest": "your_project_name/wsgi.py"
+            "dest": "snaprecka/wsgi.py"
         }
     ]
 }
