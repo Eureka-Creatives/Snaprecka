@@ -1,0 +1,2 @@
+# Snaprecka
+A Gallery app
