@@ -1,0 +1,12 @@
+# pip install django
+# pip install python-dotenv
+# pip instal mysqlclient
+# pip install pillow
+# pip install djangorestframework
+
+# ENGINE = 'django.db.backends.mysql' 
+# NAME = 'snaprecka'
+# USER = ''
+# PASSWORD = ''
+# HOST =  'localhost'
+# PORT =  '3306'
