@@ -5,7 +5,7 @@ import UserHome from "./pages/user-home";
 export const router = createBrowserRouter(
   [
     {
-      path: "/",
+      path: "/home",
       Component: UserLayout,
       children: [
         {

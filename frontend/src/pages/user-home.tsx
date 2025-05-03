@@ -1,3 +1,3 @@
 export default function UserHome() {
-  return <section>Hello User</section>;
+  return <section className="flex-1">Hello User</section>;
 }
