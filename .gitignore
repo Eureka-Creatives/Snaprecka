@@ -1,4 +1,6 @@
 myvenv
+private.pem
+public.pem
 desktop_ini/
 
 # Byte-compiled / optimized / DLL files
