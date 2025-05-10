@@ -1,11 +1,52 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.core.exceptions import ValidationError
+import uuid
 
+class CustomManager(BaseUserManager):
+    def create_user(self, username, email, location, role, password=None, **extra_fields):
+        if not all([username, email, location]):
+            raise ValueError('This field cannot be blank!')
+        email = self.normalize_email(email)
+        user = self.model(username=username, email=email, location=location, role=role, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, username, email, location, role, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+
+        # Set role for developer to seperate from tenant
+        extra_fields.setdefault("role", "developer")
+        return self.create_user(username=username, email=email, location=location, password=password, **extra_fields)
+    
+class CustomUser(AbstractUser):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    username = models.CharField(max_length=255, unique=True, null=False, blank=False)
+    email = models.EmailField(unique=True, null=False, blank=False)
+    location = models.CharField(null=False, blank=False)
+    role = models.CharField(max_length=9, null=False, blank=False, default="user")
+
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["username", "location"]
+    objects = CustomManager()
+
+    def save(self, *args, **kwargs):
+        self.username = self.username.strip().lower()
+        self.email = self.email.strip().lower()
+        self.location = self.location.strip().title()
+        super().save(self, *args, **kwargs)
+
+    def __str__(self):
+        return self.email
 
 class UserImage(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="images")
     description = models.TextField(null=False, blank=False)
-    avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
+    snapshot = models.ImageField(upload_to='snapshots/', null=True, blank=True)
+
+
 
 
 

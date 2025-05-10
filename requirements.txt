@@ -3,10 +3,6 @@
 # pip instal mysqlclient
 # pip install pillow
 # pip install djangorestframework
-
-# ENGINE = 'django.db.backends.mysql' 
-# NAME = 'snaprecka'
-# USER = ''
-# PASSWORD = ''
-# HOST =  'localhost'
-# PORT =  '3306'
+# pip install -U "celery[redis]"
+# pip install django-cloudinary-storage
+# pip install django-cloudinary-storage[video]
