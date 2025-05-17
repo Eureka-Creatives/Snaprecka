@@ -3,7 +3,8 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 from dotenv import load_dotenv
 import os
-load_dotenv()
+
+load_dotenv(os.path.join(BASE_DIR, '.env'), override=True)
 
 SECRET_KEY = os.getenv('KEY')
 
@@ -23,7 +24,12 @@ INSTALLED_APPS = [
     'api',  
     'rest_framework',  
     'rest_framework.authtoken', 
-    'django_celery_beat',  
+    'django_otp',
+    'django_otp.plugins.otp_static',
+    'django_otp.plugins.otp_totp',
+    'django_otp.plugins.otp_email',
+    'two_factor',
+    'two_factor.plugins.email', 
 ]
 
 MIDDLEWARE = [
@@ -32,6 +38,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django_otp.middleware.OTPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -100,7 +107,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 EMAIL_BACKEND = os.getenv("EMAIL_BACKEND")
 EMAIL_HOST = os.getenv("EMAIL_HOST")
-EMAIL_PORT = os.getenv("EMAIL_PORT")
+EMAIL_PORT = int(os.getenv("EMAIL_PORT"))
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_USE_SSL = os.getenv("EMAIL_USE_SSL")
@@ -115,20 +122,9 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ]
 }
-
-# Celery settings
-# settings.py
-
-CELERY_BROKER_URL = "redis://localhost:6379/0"  # or your production Redis host
-CELERY_RESULT_BACKEND = "redis://localhost:6379/0" 
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'UTC'  # or your timezone
