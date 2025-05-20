@@ -12,8 +12,6 @@ class UserSignupSerializer(serializers.Serializer):
     confirm_password = serializers.CharField(max_length=255)
 
     def validate(self, data):
-        CustomUser.objects.all().delete()
-
         if CustomUser.objects.filter(username=data['username']).exists():
             raise serializers.ValidationError({'username': 'username has been taken'})
         if CustomUser.objects.filter(email=data['email']).exists():
@@ -34,7 +32,7 @@ class UserSignupSerializer(serializers.Serializer):
         password = validated_data.get("password")
         try:
             if not CustomUser.objects.filter(email=email).exists():
-                user = CustomUser.objects.create_user(username=username, email=email, location=location, role="user", password=make_password(password))
+                user = CustomUser.objects.create_user(username=username, email=email, location=location, role="user", password=password)
         except Exception as e:
             print(e)
             raise serializers.ValidationError({'error': "email or username already exist"})
@@ -54,7 +52,7 @@ class LoginSerializer(serializers.Serializer):
             user.token_valid = False
             user.save()
         except CustomUser.DoesNotExist:
-            raise serializers.ValidationError({'email': 'email does not exist'})
+            raise serializers.ValidationError({'error': 'email or password is incorrect'})
         except CustomUser.MultipleObjectsReturned:
             raise serializers.ValidationError({'error': 'multiple account found for this email'})
         except Exception as e:

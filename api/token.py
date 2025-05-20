@@ -54,6 +54,7 @@ def send_email_for_verification(user):
             "verification_url": f"{URL}?token={token}"
         }
     )
+    print(f"{URL}?token={token}")
 
     msg = EmailMultiAlternatives(
         subject=SUBJECT,

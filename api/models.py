@@ -60,13 +60,16 @@ class CustomUser(AbstractUser):
     
 class EmailOTP(Device):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name="otp")
-    otp_code = models.CharField(max_length=int(os.getenv('OTP_LENGTH')), null=True, blank=True)
-    valid_until = models.DateTimeField(blank=True, null=True)
+    otp_code = models.CharField(max_length=int(os.getenv('OTP_LENGTH')), null=False, blank=False)
+    valid_until = models.DateTimeField(null=False, blank=False)
+
+    def save(self, *args, **kwargs):
+        self.otp_code = get_random_string(length=int(os.getenv("OTP_LENGTH")), allowed_chars=os.getenv("ALLOWED_CHARS"))
+        self.valid_until = timezone.now() + timedelta(minutes=int(os.getenv("EXPIRATION_TIME")))
+        super().save(*args, **kwargs)
 
     def send_otp(self):
         subject = "OTP"
-        self.otp_code = get_random_string(length=int(os.getenv("OTP_LENGTH")), allowed_chars=os.getenv("ALLOWED_CHARS"))
-        self.valid_until = timezone.now() + timedelta(minutes=int(os.getenv("EXPIRATION_TIME")))
         html_content = render_to_string(
             template_name="otp.html",
             context={'OTP': self.otp_code}
@@ -109,10 +112,9 @@ class EmailOTP(Device):
             print(f"An unexpected error occurred: {e}")
             return None
     
-    def verify_otp(self, otp):
-        if otp != self.otp_code:
-            return False
+    def verify_otp(self):
         if timezone.now() > self.valid_until:
+            print(timezone.now(), self.valid_until)
             return False
         return True
     
