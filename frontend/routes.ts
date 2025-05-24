@@ -1,26 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
+import LandingPage from "./src/pages/LandingPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    Component: AuthLayout,
-    children: [
-      {
-        index: true,
-        Component: Signup,
-      },
-      {
-        path: "login",
-        Component: Login,
-      },
-      {
-        path: 'otp',
-        Component: Verification
-      },
-      {
-        path: "admin/employee",
-        Component: Login,
-      },
-    ],
+    children: [{ index: true, Component: LandingPage }],
   },
 ]);
