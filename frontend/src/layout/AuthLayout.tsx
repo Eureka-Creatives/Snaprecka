@@ -2,8 +2,8 @@ import { Outlet } from "react-router-dom";
 import { InfiniteSlider } from "@/components/slider";
 export default function AuthLayout() {
   return (
-    <main className="flex justify-between w-full h-screen p-4">
-      <div className="flex flex-row items-center justify-between w-3/4 gap-4 p-4 h-screen rounded-lg bg-gray-100 overflow-hidden">
+    <main className="flex justify-between w-full h-screen bg-gray-100">
+      <div className="flex flex-row items-center justify-between w-2/5 gap-4 p-4 h-screen rounded-lg overflow-hidden">
         <InfiniteSlider direction="vertical">
           <img
             src="https://i.scdn.co/image/ab67616d00001e02ad24c5e36ddcd1957ad35677"
@@ -76,7 +76,9 @@ export default function AuthLayout() {
           />
         </InfiniteSlider>
       </div>
-      <Outlet />
+      <div className="flex-1">
+        <Outlet />
+      </div>
     </main>
   );
 }

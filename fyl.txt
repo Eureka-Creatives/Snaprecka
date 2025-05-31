@@ -1,2 +1,0 @@
-1. Opened `frontend/src/App.tsx`.
-2. Changed the import statement from `import { LoginScreen } from '@/pages/LoginScreen'` to `import LoginScreen from '@/pages/LoginScreen'` to resolve the linter error regarding the default export. 
