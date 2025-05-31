@@ -1,22 +1,22 @@
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Link } from "react-router-dom"
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Link } from "react-router-dom";
 
-export default function LoginScreen({
-    className,
-    ...props
+export default function Login({
+  className,
+  ...props
 }: React.ComponentPropsWithoutRef<"div">) {
-    return (
-        <div className={cn("flex flex-col gap-6", className)} {...props}>
+  return (
+    <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>
@@ -40,7 +40,7 @@ export default function LoginScreen({
                 <div className="flex items-center">
                   <Label htmlFor="password">Password</Label>
                   <a
-                    href="#"
+                    href="/auth/reset-password"
                     className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
                   >
                     Forgot your password?
@@ -57,7 +57,7 @@ export default function LoginScreen({
             </div>
             <div className="mt-4 text-center text-sm">
               Don&apos;t have an account?{" "}
-              <Link to="/signup" className="underline underline-offset-4">
+              <Link to="/auth/signup" className="underline underline-offset-4">
                 Sign up
               </Link>
             </div>
@@ -65,5 +65,5 @@ export default function LoginScreen({
         </CardContent>
       </Card>
     </div>
-    )
+  );
 }
