@@ -1,9 +1,3 @@
 {
-  "redirects": [
-    {
-      "source": "/",
-      "destination": "/frontend",
-      "permanent": true
-    }
-  ]
+  "rootDirectory": "frontend"
 }
