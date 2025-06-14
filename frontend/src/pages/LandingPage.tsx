@@ -1,4 +1,3 @@
-import React from "react";
 import One from "../assets/landing-page/one.png";
 import Two from "../assets/landing-page/two.png";
 import Three from "../assets/landing-page/three.jpg";
@@ -30,11 +29,11 @@ export const LandingPage = () => {
           <div className="md:h-[380px] overflow-hidden rounded-lg">
             <img src={One} alt="" />
           </div>
-          <div className="flex gap-3 mt-4 md:mt-3 md:h-[200px]">
-            <div className="w-1/2 h-[100px] md:h-full overflow-hidden rounded-lg">
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-3 mt-4 md:mt-3 md:h-[200px]">
+            <div className="h-[100px] md:h-full overflow-hidden rounded-lg">
               <img src={Two} alt=""/>
             </div>
-            <div className="w-1/2 h-[100px] md:h-full overflow-hidden rounded-lg">
+            <div className="h-[100px] md:h-full overflow-hidden rounded-lg">
               <img src={Three} alt="" className="mt-[-50%]"/>
             </div>
           </div>

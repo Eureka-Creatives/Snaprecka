@@ -1,4 +1,3 @@
-import Gallery from './pages/Gallery'
 import './App.css'
 import { LandingPage } from './pages/LandingPage'
 
@@ -6,7 +5,7 @@ function App() {
 
   return (
     <>
-   <LandingPage/>
+   <LandingPage />
     </>
   )
 }
