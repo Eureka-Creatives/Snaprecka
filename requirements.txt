@@ -1,0 +1,12 @@
+# pip install django
+# pip install python-dotenv
+# pip install pillow
+# pip install djangorestframework
+# pip install -U "celery[redis]"
+# pip install django-cloudinary-storage
+# pip install django-cloudinary-storage[video]
+# pip install PyJWT
+# pip install django-celery-beat
+# pip intall mysqlclient
+# python manage.py migrate django_celery_beat
+# pip install django-two-factor-auth
