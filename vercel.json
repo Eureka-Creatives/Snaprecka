@@ -25,6 +25,10 @@
         {
             "src": "/(.*)",
             "dest": "snaprecka/wsgi.py"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "frontend"
         }
     ]
 }
