@@ -23,12 +23,12 @@
       "dest": "/static/$1"
     },
     {
-      "src": "/(.*)",
-      "dest": "snaprecka/wsgi.py"
-    },
-    {
       "src": "/frontend/(.*)",
       "dest": "frontend"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "snaprecka/wsgi.py"
     }
   ]
 }
