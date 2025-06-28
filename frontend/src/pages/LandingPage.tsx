@@ -7,7 +7,7 @@ export default function LandingPage() {
   return (
     <header
       id="landing-page"
-      className="bg-white md:h-screen py-3 flex flex-col md:flex-row py-[50px] px-5 md:px-[100px]"
+      className="bg-white md:h-screen flex flex-col md:flex-row py-[50px] px-5 md:px-[100px]"
     >
       <div className="flex flex-col md:w-2/5 h-full order-2 md:order-1 text-center md:text-left">
         <h1 className="font-bold text-5xl/15 md:text-8xl/26 p-0 md:w-5/6">
