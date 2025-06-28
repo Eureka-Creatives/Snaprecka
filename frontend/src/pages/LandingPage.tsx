@@ -7,10 +7,9 @@ export default function LandingPage() {
   return (
     <header
       id="landing-page"
-      className="bg-white md:h-screen py-3 flex flex-col md:flex-row py-[50px] px-5 md:px-[100px]"
-    >
-      <div className="flex flex-col md:w-2/5 h-full order-2 md:order-1 text-center md:text-left">
-        <h1 className="font-bold text-5xl/15 md:text-8xl/26 p-0 md:w-5/6">
+      className="bg-white flex flex-col items-center justify-center py-[50px] px-5 md:h-screen md:flex-row md:px-10 2xl:px-2 2xl:container 2xl:mx-auto">
+      <div className="flex flex-col items-start justify-center md:w-2/5 2xl:w-1/2 h-full order-2 md:order-1 text-center md:text-left">
+        <h1 className="font-bold text-5xl/15 md:text-8xl/26 p-0 md:w-5/6 2xl:w-full">
           My Canvas Is My Therapy
         </h1>
         <div className="mt-8 md:w-4/5">
@@ -23,17 +22,16 @@ export default function LandingPage() {
         </div>
         <Button
           className="bg-primary-red hover:bg-primary-red-1 cursor-pointer px-5 !py-6 rounded-lg text-white mt-10 w-full md:w-1/2 border-none outline-none"
-          onClick={() => (window.location.href = "/auth/signup")}
-        >
+          onClick={() => (window.location.href = "/auth/signup")}>
           Upload your work here!
         </Button>
       </div>
 
-      <div className="w-full md:w-3/5 md:h-full order-1 md:order-2 mb-5 md:mb-0">
-        <div className="md:h-[380px] overflow-hidden rounded-lg">
-          <img src={One} alt="" />
+      <div className="w-full order-1 mb-5 flex flex-col items-center justify-center md:w-3/5 md:h-full md:order-2 md:mb-0 2xl:w-1/2">
+        <div className="md:h-[800px] w-full overflow-hidden rounded-lg">
+          <img src={One} alt="" className="block w-full h-full object-cover" />
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-2 gap-3 mt-4 md:mt-3 md:h-[200px]">
+        <div className="grid grid-cols-2 md:grid-cols-2 gap-3 mt-4 w-full md:mt-3 md:h-[200px]">
           <div className="h-[100px] md:h-full overflow-hidden rounded-lg">
             <img src={Two} alt="" />
           </div>
