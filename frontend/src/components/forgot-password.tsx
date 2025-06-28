@@ -16,10 +16,16 @@ export default function PasswordReset({
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
+    <div
+      className={cn(
+        "flex flex-col gap-6 w-full h-full justify-center items-center bg-gray-300/20 rounded-2xl",
+        className
+      )}
+      {...props}
+    >
+      <Card className="w-md shadow-none border-none bg-transparent ">
         <CardHeader>
-          <CardTitle className="text-2xl">Forgot Password</CardTitle>
+          <CardTitle className="text-4xl">Forgot Password</CardTitle>
           <CardDescription>
             We've all been there, Enter your email below and we'll send you a
             reset link.
@@ -38,7 +44,7 @@ export default function PasswordReset({
                 />
               </div>
 
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full h-11">
                 Sign up
               </Button>
             </div>

@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import {
   Card,
   CardContent,
@@ -10,42 +10,119 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { signupFormData } from "@/types/auth.types";
+import { signupSchema } from "@/lib/validations";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-export default function Signup({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<"div">) {
+export default function Signup() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<signupFormData>({
+    resolver: zodResolver(signupSchema),
+    mode: "onBlur",
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+  });
+
   return (
-    <div className={cn("flex flex-col gap-6 w-1/2", className)} {...props}>
-      <Card>
+    <div
+      className={cn(
+        "flex flex-col gap-6 w-full justify-center items-center bg-gray-300/20 h-full rounded-2xl"
+      )}
+    >
+      <Card className="border-none shadow-none bg-transparent w-lg">
         <CardHeader>
-          <CardTitle className="text-2xl">Signup</CardTitle>
+          <CardTitle className="text-4xl">Signup</CardTitle>
           <CardDescription>Create an account to get started</CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={handleSubmit((data) => console.log(data))}>
             <div className="flex flex-col gap-6">
+              <div className="grid  grid-cols-2 gap-2">
+                <div className="grid gap-2">
+                  <Label htmlFor="firstname">Firstname</Label>
+                  <Input
+                    id="firstname"
+                    type="firstname"
+                    {...register("firstName")}
+                    placeholder="John"
+                  />
+                  {errors.firstName && (
+                    <span className="text-red-500 text-sm">
+                      {errors.firstName?.message || "Firstname is required"}
+                    </span>
+                  )}
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="lastname">Lastname</Label>
+                  <Input
+                    id="lastname"
+                    type="lastname"
+                    {...register("lastName")}
+                    placeholder="Daniel"
+                  />
+                  {errors.lastName && (
+                    <span className="text-red-500 text-sm">
+                      {errors.lastName.message || "Lastname is required"}
+                    </span>
+                  )}
+                </div>
+              </div>
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
                   id="email"
                   type="email"
+                  {...register("email")}
                   placeholder="m@example.com"
-                  required
                 />
+                {errors.email && (
+                  <span className="text-red-500 text-sm">
+                    {errors.email.message || "Email is required"}
+                  </span>
+                )}
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="password">Password</Label>
-                <Input id="password" type="password" required />
+                <Input
+                  id="password"
+                  type="password"
+                  {...register("password")}
+                />
+                {errors.password && (
+                  <span className="text-red-500 text-sm">
+                    {errors.password?.message ||
+                      "Password must be at least 8 characters long"}
+                  </span>
+                )}
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="confirm-password">Confirm Password</Label>
-                <Input id="confirm-password" type="password" required />
+                <Input
+                  id="confirm-password"
+                  type="password"
+                  required
+                  {...register("confirmPassword")}
+                />
+                {errors.confirmPassword && (
+                  <span className="text-red-500 text-sm">
+                    {errors.confirmPassword.message ||
+                      "Confirm Password must be at least 8 characters long"}
+                  </span>
+                )}
               </div>
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full h-11 cursor-pointer">
                 Sign up
               </Button>
-              <Button variant="outline" className="w-full">
+              <Button variant="outline" className="w-full h-11 cursor-pointer">
                 Sign up with Google
               </Button>
             </div>
