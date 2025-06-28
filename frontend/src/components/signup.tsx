@@ -12,7 +12,7 @@ import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { signupFormData } from "@/types/auth.types";
-import { signupSchema } from "@/lib/validations";
+import { signupSchema } from "@/lib/validations.ts";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function Signup() {
