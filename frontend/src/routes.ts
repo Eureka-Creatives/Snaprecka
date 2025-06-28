@@ -11,23 +11,9 @@ export const router = createBrowserRouter([
   {
     path: "/",
     Component: LandingPage,
-    // children: [
-    //   {
-    //     path: "login",
-    //     Component: LoginScreen,
-    //   },
-    //   {
-    //     path: "signup",
-    //     Component: SignupScreen,
-    //   },
-    //   {
-    //     path: "reset-password",
-    //     Component: ForgotPassword,
-    //   },
-    // ],
   },
   {
-    path: "auth/",
+    path: "/auth/",
     Component: AuthLayout,
     children: [
       {
