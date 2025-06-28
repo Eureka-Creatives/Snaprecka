@@ -54,6 +54,7 @@ export default function Signup() {
                     type="firstname"
                     {...register("firstName")}
                     placeholder="John"
+                    aria-invalid={errors.firstName ? "true" : "false"}
                   />
                   {errors.firstName && (
                     <span className="text-red-500 text-sm">
@@ -68,6 +69,7 @@ export default function Signup() {
                     type="lastname"
                     {...register("lastName")}
                     placeholder="Daniel"
+                    aria-invalid={errors.lastName ? "true" : "false"}
                   />
                   {errors.lastName && (
                     <span className="text-red-500 text-sm">
@@ -83,6 +85,7 @@ export default function Signup() {
                   type="email"
                   {...register("email")}
                   placeholder="m@example.com"
+                  aria-invalid={errors.email ? "true" : "false"}
                 />
                 {errors.email && (
                   <span className="text-red-500 text-sm">
@@ -96,6 +99,7 @@ export default function Signup() {
                   id="password"
                   type="password"
                   {...register("password")}
+                  aria-invalid={errors.password ? "true" : "false"}
                 />
                 {errors.password && (
                   <span className="text-red-500 text-sm">
@@ -111,6 +115,7 @@ export default function Signup() {
                   type="password"
                   required
                   {...register("confirmPassword")}
+                  aria-invalid={errors.confirmPassword ? "true" : "false"}
                 />
                 {errors.confirmPassword && (
                   <span className="text-red-500 text-sm">

@@ -10,18 +10,30 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { loginFormData } from "@/types/auth.types";
+import { loginSchema } from "@/schema/validation";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-export default function Login({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<"div">) {
+export default function Login() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<loginFormData>({
+    resolver: zodResolver(loginSchema),
+    mode: "onBlur",
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
   return (
     <div
       className={cn(
-        "flex flex-col gap-6 w-full justify-center items-center bg-gray-300/20 h-full rounded-2xl",
-        className
+        "flex flex-col gap-6 w-full justify-center items-center bg-gray-300/20 h-full rounded-2xl"
       )}
-      {...props}
     >
       <Card className="w-md shadow-none border-none bg-transparent">
         <CardHeader>
@@ -31,7 +43,7 @@ export default function Login({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={handleSubmit((data) => console.log(data))}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
@@ -39,9 +51,15 @@ export default function Login({
                   id="email"
                   type="email"
                   placeholder="m@example.com"
-                  required
+                  {...register("email")}
+                  aria-invalid={errors.email ? "true" : "false"}
                   className=""
                 />
+                {errors.email && (
+                  <span className="text-red-500 text-sm">
+                    {errors.email?.message || "Email is required"}
+                  </span>
+                )}
               </div>
               <div className="grid gap-2">
                 <div className="flex items-center">
@@ -53,7 +71,18 @@ export default function Login({
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" type="password" required />
+                <Input
+                  id="password"
+                  type="password"
+                  required
+                  {...register("password")}
+                  aria-invalid={errors.password ? "true" : "false"}
+                />
+                {errors.password && (
+                  <span className="text-red-500 text-sm">
+                    {errors.password?.message || "Password is required"}
+                  </span>
+                )}
               </div>
               <Button type="submit" className="w-full h-11">
                 Login

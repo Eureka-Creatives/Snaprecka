@@ -10,18 +10,29 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { forgotPasswordSchema } from "@/schema/validation";
+import { forgotPasswordFormData } from "@/types/auth.types";
 
-export default function PasswordReset({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<"div">) {
+export default function PasswordReset() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<forgotPasswordFormData>({
+    resolver: zodResolver(forgotPasswordSchema),
+    mode: "onBlur",
+    defaultValues: {
+      email: "",
+    },
+  });
+
   return (
     <div
       className={cn(
-        "flex flex-col gap-6 w-full h-full justify-center items-center bg-gray-300/20 rounded-2xl",
-        className
+        "flex flex-col gap-6 w-full h-full justify-center items-center bg-gray-300/20 rounded-2xl"
       )}
-      {...props}
     >
       <Card className="w-md shadow-none border-none bg-transparent ">
         <CardHeader>
@@ -32,7 +43,7 @@ export default function PasswordReset({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={handleSubmit((data) => console.log(data))}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
@@ -41,7 +52,14 @@ export default function PasswordReset({
                   type="email"
                   placeholder="m@example.com"
                   required
+                  {...register("email")}
+                  aria-invalid={errors.email ? "true" : "false"}
                 />
+                {errors.email && (
+                  <span className="text-red-500 text-sm">
+                    {errors.email?.message || "Email is required"}
+                  </span>
+                )}
               </div>
 
               <Button type="submit" className="w-full h-11">

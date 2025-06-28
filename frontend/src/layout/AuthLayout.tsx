@@ -54,24 +54,24 @@ export default function AuthLayout() {
           <img
             src={image7}
             alt="Jungle Jack - JUNGLE DES ILLUSIONS VOL 2"
-            className="aspect-auto w-[170px] rounded-[4px]"
+            className="aspect-auto w-[200px] rounded-[4px]"
           />
           <img
             src={image8}
             alt="Yung Lean - Stardust"
-            className="aspect-auto w-[170px] rounded-[4px]"
+            className="aspect-auto w-[200px] rounded-[4px]"
           />
           <img
             src={image9}
             alt="Lana Del Rey - Ultraviolence"
-            className="aspect-auto w-[170px] rounded-[4px]"
+            className="aspect-auto w-[200px] rounded-[4px]"
           />
         </InfiniteSlider>
         <InfiniteSlider direction="vertical">
           <img
             src={image10}
             alt="Dean blunt - Black Metal 2"
-            className="aspect-auto w-[170px] rounded-[4px]"
+            className="aspect-auto w-[200px] rounded-[4px]"
           />
           <img
             src={image11}
