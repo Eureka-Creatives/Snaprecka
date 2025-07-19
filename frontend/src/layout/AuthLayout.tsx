@@ -90,7 +90,7 @@ export default function AuthLayout() {
           />
         </InfiniteSlider>
       </div>
-      <div className="w-[55%] ">
+      <div className="w-[55%]">
         <Outlet />
       </div>
     </main>

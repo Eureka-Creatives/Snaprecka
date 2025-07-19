@@ -35,7 +35,7 @@ export default function Signup() {
   return (
     <div
       className={cn(
-        "flex flex-col gap-6 w-full justify-center items-center bg-gray-300/20 h-full rounded-2xl"
+        "flex flex-col gap-6 w-full justify-center items-center min-h-screen bg-gray-300/20 rounded-2xl"
       )}
     >
       <Card className="border-none shadow-none bg-transparent w-lg">
@@ -46,7 +46,11 @@ export default function Signup() {
         <CardContent>
           <form onSubmit={handleSubmit((data) => console.log(data))}>
             <div className="flex flex-col gap-6">
-              <div className="grid  grid-cols-2 gap-2">
+              <div
+                className={`grid  grid-cols-2 gap-2 relative ${
+                  errors.firstName ? "mb-4" : ""
+                }`}
+              >
                 <div className="grid gap-2">
                   <Label htmlFor="firstname">Firstname</Label>
                   <Input
@@ -57,11 +61,12 @@ export default function Signup() {
                     aria-invalid={errors.firstName ? "true" : "false"}
                   />
                   {errors.firstName && (
-                    <span className="text-red-500 text-sm">
+                    <span className="text-red-500 text-xs absolute -bottom-6">
                       {errors.firstName?.message || "Firstname is required"}
                     </span>
                   )}
                 </div>
+
                 <div className="grid gap-2">
                   <Label htmlFor="lastname">Lastname</Label>
                   <Input
@@ -71,12 +76,12 @@ export default function Signup() {
                     placeholder="Daniel"
                     aria-invalid={errors.lastName ? "true" : "false"}
                   />
-                  {errors.lastName && (
-                    <span className="text-red-500 text-sm">
-                      {errors.lastName.message || "Lastname is required"}
-                    </span>
-                  )}
                 </div>
+                {errors.lastName && (
+                  <span className="text-red-500 text-xs absolute -bottom-6 right-0">
+                    {errors.lastName.message || "Lastname is required"}
+                  </span>
+                )}
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
@@ -88,7 +93,7 @@ export default function Signup() {
                   aria-invalid={errors.email ? "true" : "false"}
                 />
                 {errors.email && (
-                  <span className="text-red-500 text-sm">
+                  <span className="text-red-500 text-xs">
                     {errors.email.message || "Email is required"}
                   </span>
                 )}
@@ -102,7 +107,7 @@ export default function Signup() {
                   aria-invalid={errors.password ? "true" : "false"}
                 />
                 {errors.password && (
-                  <span className="text-red-500 text-sm">
+                  <span className="text-red-500 text-xs">
                     {errors.password?.message ||
                       "Password must be at least 8 characters long"}
                   </span>
@@ -118,7 +123,7 @@ export default function Signup() {
                   aria-invalid={errors.confirmPassword ? "true" : "false"}
                 />
                 {errors.confirmPassword && (
-                  <span className="text-red-500 text-sm">
+                  <span className="text-red-500 text-xs">
                     {errors.confirmPassword.message ||
                       "Confirm Password must be at least 8 characters long"}
                   </span>
