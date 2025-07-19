@@ -32,7 +32,7 @@ export default function Login() {
   return (
     <div
       className={cn(
-        "flex flex-col gap-6 w-full justify-center items-center bg-gray-300/20 h-full rounded-2xl"
+        "flex flex-col gap-6 w-full justify-center items-center min-h-[90vh] rounded-2xl"
       )}
     >
       <Card className="w-md shadow-none border-none bg-transparent">
@@ -56,7 +56,7 @@ export default function Login() {
                   className=""
                 />
                 {errors.email && (
-                  <span className="text-red-500 text-sm">
+                  <span className="text-red-500 text-xs">
                     {errors.email?.message || "Email is required"}
                   </span>
                 )}
@@ -79,7 +79,7 @@ export default function Login() {
                   aria-invalid={errors.password ? "true" : "false"}
                 />
                 {errors.password && (
-                  <span className="text-red-500 text-sm">
+                  <span className="text-red-500 text-xs">
                     {errors.password?.message || "Password is required"}
                   </span>
                 )}
