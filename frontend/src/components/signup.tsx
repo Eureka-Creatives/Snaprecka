@@ -35,7 +35,7 @@ export default function Signup() {
   return (
     <div
       className={cn(
-        "flex flex-col gap-6 w-full justify-center max-h-screen items-center rounded-2xl"
+        "flex flex-col gap-6 w-full justify-center  items-center rounded-2xl"
       )}
     >
       <Card className="border-none shadow-none bg-transparent w-lg">
