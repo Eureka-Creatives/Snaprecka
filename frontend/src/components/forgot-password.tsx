@@ -31,7 +31,7 @@ export default function PasswordReset() {
   return (
     <div
       className={cn(
-        "flex flex-col gap-6 w-full h-full justify-center items-center bg-gray-300/20 rounded-2xl"
+        "flex flex-col gap-6 w-full h-full justify-center items-center rounded-2xl"
       )}
     >
       <Card className="w-md shadow-none border-none bg-transparent ">
@@ -62,8 +62,8 @@ export default function PasswordReset() {
                 )}
               </div>
 
-              <Button type="submit" className="w-full h-11">
-                Sign up
+              <Button type="submit" className="w-full">
+                Continue
               </Button>
             </div>
             <div className="mt-4 text-center text-sm">

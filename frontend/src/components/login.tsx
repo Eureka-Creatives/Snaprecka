@@ -32,7 +32,7 @@ export default function Login() {
   return (
     <div
       className={cn(
-        "flex flex-col gap-6 w-full justify-center items-center rounded-2xl"
+        "flex flex-col gap-6 w-full justify-center h-full items-center rounded-2xl"
       )}
     >
       <Card className="w-md shadow-none border-none bg-transparent">
@@ -84,12 +84,14 @@ export default function Login() {
                   </span>
                 )}
               </div>
-              <Button type="submit" className="w-full h-11">
-                Login
-              </Button>
-              <Button variant="outline" className="w-full h-11">
-                Login with Google
-              </Button>
+              <div className="flex flex-col gap-2">
+                <Button type="submit" className="w-full">
+                  Login
+                </Button>
+                <Button variant="outline" className="w-full">
+                  Login with Google
+                </Button>
+              </div>
             </div>
             <div className="mt-4 text-center text-sm">
               Don&apos;t have an account?{" "}

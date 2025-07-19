@@ -38,7 +38,7 @@ export default function Signup() {
         "flex flex-col gap-6 w-full justify-center h-full items-center rounded-2xl"
       )}
     >
-      <Card className="border-none shadow-none bg-transparent w-lg">
+      <Card className="border-none shadow-none bg-transparent w-md">
         <CardHeader>
           <CardTitle className="text-4xl">Signup</CardTitle>
           <CardDescription>Create an account to get started</CardDescription>
@@ -129,12 +129,14 @@ export default function Signup() {
                   </span>
                 )}
               </div>
-              <Button type="submit" className="w-full h-11 cursor-pointer">
-                Sign up
-              </Button>
-              <Button variant="outline" className="w-full h-11 cursor-pointer">
-                Sign up with Google
-              </Button>
+              <div className="flex flex-col gap-2">
+                <Button type="submit" className="w-full">
+                  Sign up
+                </Button>
+                <Button variant="outline" className="w-full">
+                  Sign up with Google
+                </Button>
+              </div>
             </div>
             <div className="mt-4 text-center text-sm">
               Already have an account?{" "}
