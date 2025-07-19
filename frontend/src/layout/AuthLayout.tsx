@@ -90,7 +90,7 @@ export default function AuthLayout() {
           />
         </InfiniteSlider>
       </div>
-      <div className="w-[55%]">
+      <div className="w-[55%] min-h-[90vh] flex justify-center">
         <Outlet />
       </div>
     </main>

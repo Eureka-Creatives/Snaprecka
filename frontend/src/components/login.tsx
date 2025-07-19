@@ -32,7 +32,7 @@ export default function Login() {
   return (
     <div
       className={cn(
-        "flex flex-col gap-6 w-full justify-center items-center min-h-[90vh] rounded-2xl"
+        "flex flex-col gap-6 w-full justify-center items-center rounded-2xl"
       )}
     >
       <Card className="w-md shadow-none border-none bg-transparent">
