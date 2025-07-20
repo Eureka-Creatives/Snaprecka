@@ -16,7 +16,7 @@ import image13 from "@/assets/auth/community5 (1).webp";
 
 export default function AuthLayout() {
   return (
-    <main className="flex justify-between w-full h-screen bg-[#FCF1FD] p-5">
+    <main className="flex justify-between w-full h-screen bg-white p-5 font-dm">
       <div className="flex flex-row items-center justify-between w-2/5 b gap-4 rounded-lg overflow-hidden">
         <InfiniteSlider direction="vertical">
           <img

@@ -7,7 +7,8 @@ export default function LandingPage() {
   return (
     <header
       id="landing-page"
-      className="bg-white flex flex-col items-center justify-center py-[50px] px-5 md:h-screen md:flex-row md:px-10 2xl:px-2 2xl:container 2xl:mx-auto">
+      className="bg-white flex flex-col items-center justify-center py-[50px] px-5 md:h-screen md:flex-row md:px-10 2xl:px-2 2xl:container 2xl:mx-auto"
+    >
       <div className="flex flex-col items-start justify-center md:w-2/5 2xl:w-1/2 h-full order-2 md:order-1 text-center md:text-left">
         <h1 className="font-bold text-5xl/15 md:text-8xl/26 p-0 md:w-5/6 2xl:w-full">
           My Canvas Is My Therapy
@@ -21,8 +22,9 @@ export default function LandingPage() {
           </p>
         </div>
         <Button
-          className="bg-primary-red hover:bg-primary-red-1 cursor-pointer px-5 !py-6 rounded-lg text-white mt-10 w-full md:w-1/2 border-none outline-none"
-          onClick={() => (window.location.href = "/auth/signup")}>
+          className="bg-soft-blue hover:bg-soft-blue/80 cursor-pointer px-5 !py-6 rounded-lg text-white mt-10 w-full md:w-1/2 border-none outline-none"
+          onClick={() => (window.location.href = "/auth/signup")}
+        >
           Upload your work here!
         </Button>
       </div>

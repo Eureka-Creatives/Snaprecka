@@ -6,6 +6,7 @@ import SignupScreen from "./pages/Signupscreen";
 import ForgotPassword from "./pages/ForgotPassword";
 import AuthLayout from "./layout/AuthLayout";
 import LandingPage from "./pages/LandingPage";
+import NotFound from "./pages/error/notFound";
 
 export const router = createBrowserRouter([
   {
@@ -39,5 +40,9 @@ export const router = createBrowserRouter([
         Component: UserHome,
       },
     ],
+  },
+  {
+    path: "*",
+    Component: NotFound,
   },
 ]);
