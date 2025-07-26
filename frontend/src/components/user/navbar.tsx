@@ -4,26 +4,40 @@ import { FiPlus } from "react-icons/fi";
 import VaulDrawer from "./drawer";
 import { useState } from "react";
 import { Drawer } from "vaul";
+import { Button } from "../ui/button";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="py-2.5 pr-4 max-md:px-3 flex flex-row justify-between items-center font-dm bg-transparent text-black">
+    <nav className="py-2.5 w-full pr-4 max-md:px-3 flex flex-row justify-between items-center font-dm bg-transparent text-black bg-white">
       <div className="">
         <h1 className="text-2xl max-md:text-xl font-bold text-black">angles</h1>
       </div>
-      <div className="flex flex-row items-center gap-32 max-md:gap-8">
+      <div className="flex flex-row items-center justify-between w-1/2 gap-32 max-md:gap-8">
         <div className="flex items-center gap-2 cursor-pointer border border-soft-blue/50 px-4 py-1 rounded-full hover:bg-soft-blue/5 transition-colors duration-100 ease-out">
           <span className="text-base max-md:text-sm">Capsules</span>
           <GoChevronDown className="text-lg max-md:text-base" />
         </div>
         <ul className="flex items-center gap-4 max-md:gap-1">
-          <li className="cursor-pointer hover:bg-soft-blue/15 px-2 py-2 rounded-full">
-            <CgSearch className="text-lg" />
+          <li className="cursor-pointer bg-soft-blue/15 px-3 py-2 flex items-center gap-2 rounded-full transition-colors duration-100 ease-out">
+            <div>
+              <input
+                type="text"
+                placeholder="Search for a capsule"
+                className="bg-transparent outline-none text-sm max-md:text-sm px-2 w-full"
+              />
+            </div>
+            <CgSearch className="text-base text-gray-600" />
           </li>
-          <li className="cursor-pointer hover:bg-soft-blue/15 px-2 py-2 rounded-full">
-            <FiPlus className="text-lg" />
+          <li className="cursor-pointer">
+            <Button
+              variant="ghost"
+              className="text-sm h-9 font-light bg-soft-blue/15 hover:bg-soft-blue/10 px-5 rounded-full flex items-center gap-2 text-gray-600"
+            >
+              <span className="max-md:hidden">Create</span>
+              <FiPlus className="text-base max-md:text-sm font-light" />
+            </Button>
           </li>
           <li className="border-soft-blue cursor-pointer border rounded-full p-1 hidden max-lg:block h-8 w-8">
             <VaulDrawer setIsOpen={setIsOpen} isOpen={isOpen}>
