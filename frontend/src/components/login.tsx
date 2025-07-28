@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 import { loginFormData } from "@/types/auth.types";
 import { loginSchema } from "@/schema/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { login } from "@/service/logic/login";
 
 export default function Login() {
   const {
@@ -29,6 +30,10 @@ export default function Login() {
     },
   });
 
+  const onSubmit = async (data: loginFormData) => {
+    await login(data);
+  };
+
   return (
     <div
       className={cn(
@@ -43,7 +48,7 @@ export default function Login() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit((data) => console.log(data))}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>

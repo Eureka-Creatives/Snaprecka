@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 import { signupFormData } from "@/types/auth.types";
 import { signupSchema } from "@/schema/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { registerUser } from "@/service/logic/register";
 
 export default function Signup() {
   const {
@@ -32,6 +33,11 @@ export default function Signup() {
     },
   });
 
+  const onSubmit = async (data: signupFormData) => {
+    console.log(data);
+    await registerUser(data);
+  };
+
   return (
     <div
       className={cn(
@@ -44,7 +50,7 @@ export default function Signup() {
           <CardDescription>Create an account to get started</CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit((data) => console.log(data))}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-6">
               <div
                 className={`grid  grid-cols-2 gap-2 relative ${
