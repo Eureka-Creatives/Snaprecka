@@ -1,6 +1,6 @@
 import authInstance from "../apiClient";
 import { loginRequestType, loginResponseType } from "../../types/auth/login";
-import { handleLoginAuth } from "@/lib/authHandler";
+import { handleLoginAuth } from "@/utils/authHandler";
 
 export const login = async (formData: loginRequestType) => {
   try {
