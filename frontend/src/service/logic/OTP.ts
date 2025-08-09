@@ -1,7 +1,7 @@
 import authInstance from "../apiClient";
-import { OTPRequestType, OTPResponseType } from "@/types/auth/OTP";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
+import { OTPRequestType, OTPResponseType } from "@/types/auth/otp";
 
 export const verifyOTP = async ({ email, otp }: OTPRequestType) => {
   try {
