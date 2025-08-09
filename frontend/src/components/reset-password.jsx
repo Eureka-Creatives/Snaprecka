@@ -24,15 +24,17 @@ export default function PasswordReset() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<forgotPasswordFormData>({
+  } = useForm <
+  forgotPasswordFormData >
+  {
     resolver: zodResolver(forgotPasswordSchema),
     mode: "onBlur",
     defaultValues: {
       email: "",
     },
-  });
+  };
 
-  const onSubmit = async (data: forgotPasswordFormData) => {
+  const onSubmit = async (data) => {
     const email = data.email;
     const result = await forgotPassword({ email });
     if (result?.messageID) {

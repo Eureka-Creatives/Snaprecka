@@ -14,3 +14,12 @@ export interface loginFormData {
 export interface forgotPasswordFormData {
   email: string;
 }
+
+export interface OTPdata {
+  otp: string;
+}
+
+export interface resetPasswordData {
+  newPassword: string;
+  confirmPassword: string;
+}

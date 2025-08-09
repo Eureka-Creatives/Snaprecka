@@ -27,3 +27,9 @@ export const loginSchema = z.object({
 export const forgotPasswordSchema = z.object({
   email: z.string().email(),
 });
+
+export const OTPSchema = z.object({
+  otp: z.string().min(6, {
+    message: "OTP must be at least 6 characters long",
+  }),
+});

@@ -14,9 +14,13 @@ import { useForm } from "react-hook-form";
 import { signupFormData } from "@/types/auth.types";
 import { signupSchema } from "@/schema/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { registerUser } from "@/service/logic/register";
+import { useAuthStore } from "@/stores/useAuthStore";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 export default function Signup() {
+  const navigate = useNavigate();
+  const { register: registerUser, isLoading } = useAuthStore.getState();
   const {
     register,
     handleSubmit,
@@ -34,8 +38,15 @@ export default function Signup() {
   });
 
   const onSubmit = async (data: signupFormData) => {
-    console.log(data);
-    await registerUser(data);
+    const result = await registerUser(data);
+    if (result?.user) {
+      toast.success(result.message || "Registration successful", {
+        duration: 2000,
+        onAutoClose: () => {
+          navigate("/auth/login");
+        },
+      });
+    }
   };
 
   return (
@@ -136,8 +147,8 @@ export default function Signup() {
                 )}
               </div>
               <div className="flex flex-col gap-2">
-                <Button type="submit" className="w-full">
-                  Sign up
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                  {isLoading ? "Signing up..." : "Sign up"}
                 </Button>
                 <Button variant="outline" className="w-full">
                   Sign up with Google

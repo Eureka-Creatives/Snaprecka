@@ -3,6 +3,8 @@ import {
   registerRequestType,
   registerResponseType,
 } from "../../types/auth/register";
+import { toast } from "sonner";
+import { AxiosError } from "axios";
 
 export const registerUser = async (formData: registerRequestType) => {
   try {
@@ -13,13 +15,15 @@ export const registerUser = async (formData: registerRequestType) => {
         password: formData.password,
         firstName: formData.firstName,
         lastName: formData.lastName,
-        confirmPassword: formData.confirmPassword, // Ensure this is included if your API requires it
+        confirmPassword: formData.confirmPassword,
       }
     );
     console.log("Registration successful:", response.data);
     return response.data;
-  } catch (error: unknown) {
-    console.error("Registration failed:", error);
-    throw new Error("Registration failed");
+  } catch (error) {
+    console.error("Login failed:", error);
+    if (error instanceof AxiosError) {
+      toast.error(error.response?.data.error || "Login failed");
+    }
   }
 };

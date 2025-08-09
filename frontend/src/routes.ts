@@ -5,13 +5,22 @@ import LoginScreen from "./pages/Loginscreen";
 import SignupScreen from "./pages/Signupscreen";
 import ForgotPassword from "./pages/ForgotPassword";
 import AuthLayout from "./layout/AuthLayout";
+import LandingLayout from "./layout/landingLayout";
 import LandingPage from "./pages/LandingPage";
 import NotFound from "./pages/error/notFound";
+import VerifyOTP from "./pages/VerifyOTP";
+import { CheckAuth } from "./utils/authUser";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    Component: LandingPage,
+    Component: LandingLayout,
+    children: [
+      {
+        index: true,
+        Component: LandingPage,
+      },
+    ],
   },
   {
     path: "/auth/",
@@ -29,6 +38,14 @@ export const router = createBrowserRouter([
         path: "reset-password",
         Component: ForgotPassword,
       },
+      {
+        path: "reset-password",
+        Component: ForgotPassword,
+      },
+      {
+        path: "verify-otp",
+        Component: VerifyOTP,
+      },
     ],
   },
   {
@@ -37,6 +54,9 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
+        loader: async () => {
+          await CheckAuth();
+        },
         Component: UserHome,
       },
     ],

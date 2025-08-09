@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { InfiniteSlider } from "@/components/slider";
+import { Toaster } from "sonner";
 import image1 from "@/assets/auth/community1.webp";
 import image2 from "@/assets/auth/community64.webp";
 import image3 from "@/assets/auth/community90.webp";
@@ -17,6 +18,14 @@ import image13 from "@/assets/auth/community5 (1).webp";
 export default function AuthLayout() {
   return (
     <main className="flex justify-between w-full h-screen bg-white p-5 font-dm">
+      <Toaster
+        position="top-right"
+        richColors
+        closeButton={false}
+        toastOptions={{
+          className: "text-sm",
+        }}
+      />
       <div className="flex flex-row items-center justify-between w-2/5 b gap-4 rounded-lg overflow-hidden">
         <InfiniteSlider direction="vertical">
           <img

@@ -7,43 +7,43 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+} from "@/components/ui/input-otp";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { forgotPasswordSchema } from "@/schema/validation";
-import { forgotPasswordFormData } from "@/types/auth.types";
-import { forgotPassword } from "@/service/logic/forgotPassword";
+import { OTPSchema } from "@/schema/validation";
+import { OTPdata } from "@/types/auth.types";
+import { verifyOTP } from "@/service/logic/OTP";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
-export default function PasswordReset() {
+export default function PasswordOTP() {
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<forgotPasswordFormData>({
-    resolver: zodResolver(forgotPasswordSchema),
-    mode: "onBlur",
+  } = useForm<OTPdata>({
+    resolver: zodResolver(OTPSchema),
     defaultValues: {
-      email: "",
+      otp: "",
     },
   });
 
-  const onSubmit = async (data: forgotPasswordFormData) => {
-    const email = data.email;
-    const result = await forgotPassword({ email });
+  const onSubmit = async (data: OTPdata) => {
+    const otp = data.otp;
+    const result = await verifyOTP({ otp });
     if (result?.messageID) {
-      toast.success(result?.message || "OTP sent successfully", {
+      toast.success(result.message || "OTP verified successfully", {
         duration: 1000,
         onAutoClose: () => {
-          navigate("/auth/verify-otp");
+          navigate("/");
         },
       });
-    } else {
-      toast.error(result?.message || "Failed to send reset link");
     }
   };
 
@@ -55,28 +55,33 @@ export default function PasswordReset() {
     >
       <Card className="w-md shadow-none border-none bg-transparent ">
         <CardHeader>
-          <CardTitle className="text-4xl">Forgot Password</CardTitle>
+          <CardTitle className="text-4xl">Verify OTP</CardTitle>
           <CardDescription>
-            We've all been there, Enter your email below and we'll send you a
-            reset link.
+            Enter the OTP sent to your email to continue.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="flex flex-col gap-6">
-              <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="m@example.com"
-                  required
-                  {...register("email")}
-                  aria-invalid={errors.email ? "true" : "false"}
-                />
-                {errors.email && (
+              <div className="grid gap-2 mx-auto">
+                <InputOTP maxLength={6}>
+                  <InputOTPGroup className="flex gap-2 items-center justify-center">
+                    {Array.from({ length: 6 }).map((_, index) => (
+                      <InputOTPSlot
+                        key={index}
+                        index={index}
+                        {...register(`otp`, {
+                          required: "OTP is required",
+                        })}
+                        aria-invalid={errors.otp ? "true" : "false"}
+                        className="w-14 h-14 text-center text-lg border-1 border-gray-300 rounded"
+                      />
+                    ))}
+                  </InputOTPGroup>
+                </InputOTP>
+                {errors.otp && (
                   <span className="text-red-500 text-sm">
-                    {errors.email?.message || "Email is required"}
+                    {errors.otp?.message || "OTP is required"}
                   </span>
                 )}
               </div>

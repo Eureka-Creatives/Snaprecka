@@ -14,9 +14,13 @@ import { useForm } from "react-hook-form";
 import { loginFormData } from "@/types/auth.types";
 import { loginSchema } from "@/schema/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { login } from "@/service/logic/login";
+import { useAuthStore } from "@/stores/useAuthStore";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const { login, isLoading } = useAuthStore.getState();
   const {
     register,
     handleSubmit,
@@ -31,7 +35,15 @@ export default function Login() {
   });
 
   const onSubmit = async (data: loginFormData) => {
-    await login(data);
+    const result = await login(data);
+    if (result?.isAuthenticated) {
+      toast.success(result.message || "Login successful", {
+        duration: 2000,
+        onAutoClose: () => {
+          navigate("/home");
+        },
+      });
+    }
   };
 
   return (
@@ -90,8 +102,8 @@ export default function Login() {
                 )}
               </div>
               <div className="flex flex-col gap-2">
-                <Button type="submit" className="w-full">
-                  Login
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                  {isLoading ? "Logging in..." : "Login"}
                 </Button>
                 <Button variant="outline" className="w-full">
                   Login with Google
