@@ -17,6 +17,7 @@ export interface forgotPasswordFormData {
 
 export interface OTPdata {
   otp: string;
+  email: string;
 }
 
 export interface resetPasswordData {

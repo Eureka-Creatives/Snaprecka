@@ -19,6 +19,7 @@ import { OTPSchema } from "@/schema/validation";
 import { OTPdata } from "@/types/auth.types";
 import { verifyOTP } from "@/service/logic/OTP";
 import { useNavigate } from "react-router-dom";
+// import {forgotPass}
 import { toast } from "sonner";
 
 export default function PasswordOTP() {

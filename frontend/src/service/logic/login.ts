@@ -14,7 +14,9 @@ export const login = async (formData: loginRequestType) => {
   } catch (error) {
     console.error("Login failed:", error);
     if (error instanceof AxiosError) {
-      toast.error(error.response?.data.error || "Login failed");
+      toast.error(
+        error.response?.data.error || error.message || "error failed"
+      );
     }
   }
 };

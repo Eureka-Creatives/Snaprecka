@@ -32,4 +32,5 @@ export const OTPSchema = z.object({
   otp: z.string().min(6, {
     message: "OTP must be at least 6 characters long",
   }),
+  email: z.string().email(),
 });
