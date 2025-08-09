@@ -36,7 +36,7 @@ export default function PasswordOTP() {
 
   const onSubmit = async (data: OTPdata) => {
     const otp = data.otp;
-    const result = await verifyOTP({ otp });
+    const result = await verifyOTP({ email: "", otp });
     if (result?.messageID) {
       toast.success(result.message || "OTP verified successfully", {
         duration: 1000,

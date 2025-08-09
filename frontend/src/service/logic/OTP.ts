@@ -1,5 +1,5 @@
 import authInstance from "../apiClient";
-import { OTPRequestType, OTPResponseType } from "../../types/auth/OTP";
+import { OTPRequestType, OTPResponseType } from "@/types/auth/OTP";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
 
