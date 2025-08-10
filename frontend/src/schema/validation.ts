@@ -28,9 +28,19 @@ export const forgotPasswordSchema = z.object({
   email: z.string().email(),
 });
 
+export const resetPasswordSchema = z.object({
+  email: z.string().email(),
+  newPassword: z.string().min(8, {
+    message: "New Password must be at least 8 characters long",
+  }),
+  confirmPassword: z.string().min(8, {
+    message: "Confirm Password must be at least 8 characters long",
+  }),
+});
+
 export const OTPSchema = z.object({
   otp: z.string().min(6, {
     message: "OTP must be at least 6 characters long",
   }),
-  email: z.string().email(),
+  email: z.string().email().optional(),
 });

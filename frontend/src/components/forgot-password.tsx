@@ -14,11 +14,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { forgotPasswordSchema } from "@/schema/validation";
 import { forgotPasswordFormData } from "@/types/auth.types";
-import { forgotPassword } from "@/service/logic/forgotPassword";
+import { useAuthStore } from "@/stores/useAuthStore";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
-export default function PasswordReset() {
+export default function ForgotPassword() {
+  const { isLoading, forgotPassword } = useAuthStore();
   const navigate = useNavigate();
   const {
     register,
@@ -33,13 +34,15 @@ export default function PasswordReset() {
   });
 
   const onSubmit = async (data: forgotPasswordFormData) => {
-    const email = data.email;
-    const result = await forgotPassword({ email });
-    if (result?.messageID) {
+    console.log(data);
+    const result = await forgotPassword(data);
+    if (result?.messageId) {
       toast.success(result?.message || "OTP sent successfully", {
         duration: 1000,
         onAutoClose: () => {
-          navigate("/auth/verify-otp");
+          navigate("/auth/verify-otp", {
+            state: { email: data.email },
+          });
         },
       });
     } else {
@@ -82,7 +85,7 @@ export default function PasswordReset() {
               </div>
 
               <Button type="submit" className="w-full">
-                Continue
+                {isLoading ? "Verifying" : "Continue"}
               </Button>
             </div>
             <div className="mt-4 text-center text-sm">

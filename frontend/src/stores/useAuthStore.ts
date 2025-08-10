@@ -12,11 +12,13 @@ import {
 import { forgotPassword } from "@/service/logic/forgotPassword";
 import { login } from "@/service/logic/login";
 import { registerUser } from "@/service/logic/register";
+import { verifyOTP } from "@/service/logic/OTP";
 import { resetPassword } from "@/service/logic/resetPassword";
 import {
   resetPasswordRequestType,
   resetPasswordResponseType,
 } from "@/types/auth/resetPassword";
+import { OTPRequestType, OTPResponseType } from "@/types/auth/otp";
 
 interface user {
   email: string;
@@ -31,6 +33,7 @@ interface AuthState {
   isAuthenticated: boolean;
   user: null | user;
   token: string | null;
+  email?: string;
   message?: string;
   login: (
     loginRequest: loginRequestType
@@ -38,9 +41,10 @@ interface AuthState {
   register: (
     registerRequest: registerRequestType
   ) => Promise<registerResponseType | undefined>;
-  forgotPassword?: (
+  forgotPassword: (
     email: forgotPasswordRequestType
   ) => Promise<forgotPasswordResponseType | undefined>;
+  verifyOtp: (data: OTPRequestType) => Promise<OTPResponseType | undefined>;
   resetPassword: (
     data: resetPasswordRequestType
   ) => Promise<resetPasswordResponseType | undefined>;
@@ -56,6 +60,7 @@ export const useAuthStore = create<AuthState>()(
       isLoading: false,
       user: null,
       token: null,
+      email: "",
       login: async (loginRequest: loginRequestType) => {
         try {
           set({ isLoading: true });
@@ -81,17 +86,40 @@ export const useAuthStore = create<AuthState>()(
         set({ isAuthenticated: false, token: null, user: null });
         localStorage.removeItem("auth-storage");
       },
-      forgotPassword: async (email: forgotPasswordRequestType) => {
+      forgotPassword: async (data: forgotPasswordRequestType) => {
         try {
           set({ isLoading: true });
-          const response = await forgotPassword(email);
-          set({ isAuthenticated: false, token: null, isLoading: false });
+          const response = await forgotPassword(data);
+          set({
+            isAuthenticated: false,
+            token: null,
+            isLoading: false,
+            email: data.email,
+          });
           if (response) {
             console.log("Forgot password request successful:", response);
           }
           return response;
         } catch (error) {
           console.error("Error in forgotPassword:", error);
+          set({ isLoading: false });
+        }
+      },
+      verifyOtp: async (data: OTPRequestType) => {
+        try {
+          set({ isLoading: true });
+          const currentState = useAuthStore.getState();
+          const response = await verifyOTP({
+            email: currentState?.email || data.email,
+            otp: data.otp,
+          });
+          set({ isLoading: false, email: "" });
+          if (response) {
+            console.log("OTP verification successful:", response);
+          }
+          return response;
+        } catch (error) {
+          console.error("Error in verifyOTP:", error);
           set({ isLoading: false });
         }
       },

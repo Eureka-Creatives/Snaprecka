@@ -10,9 +10,7 @@ export const forgotPassword = async (email: forgotPasswordRequestType) => {
   try {
     const response = await authInstance.post<forgotPasswordResponseType>(
       "/auth/mail",
-      {
-        email,
-      }
+      email
     );
     console.log("Forgot password request successful:", response.data);
     return response.data;

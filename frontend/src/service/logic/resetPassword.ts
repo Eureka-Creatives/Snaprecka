@@ -4,11 +4,13 @@ import { resetPasswordData } from "@/types/auth.types";
 import { toast } from "sonner";
 
 export const resetPassword = async ({
+  email,
   newPassword,
   confirmPassword,
 }: resetPasswordData) => {
   try {
-    const response = await authInstance.post("/auth/reset-password", {
+    const response = await authInstance.post("/auth/resetPassword", {
+      email,
       newPassword,
       confirmPassword,
     });

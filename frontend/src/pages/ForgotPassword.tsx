@@ -1,4 +1,4 @@
-import PasswordReset from "../components/forgot-password";
+import Forgotpassword from "../components/forgot-password";
 export default function ForgotPassword() {
-  return <PasswordReset />;
+  return <Forgotpassword />;
 }

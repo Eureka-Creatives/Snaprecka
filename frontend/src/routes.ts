@@ -9,6 +9,7 @@ import LandingLayout from "./layout/landingLayout";
 import LandingPage from "./pages/LandingPage";
 import NotFound from "./pages/error/notFound";
 import VerifyOTP from "./pages/VerifyOTP";
+import ResetPassword from "./pages/ResetPassword";
 import { CheckAuth } from "./utils/authUser";
 
 export const router = createBrowserRouter([
@@ -35,12 +36,12 @@ export const router = createBrowserRouter([
         Component: SignupScreen,
       },
       {
-        path: "reset-password",
+        path: "forgot-password",
         Component: ForgotPassword,
       },
       {
         path: "reset-password",
-        Component: ForgotPassword,
+        Component: ResetPassword,
       },
       {
         path: "verify-otp",

@@ -4,6 +4,6 @@ export interface forgotPasswordRequestType {
 
 export interface forgotPasswordResponseType {
   message: string;
-  messageID: string;
+  messageId: string;
   OTP: string;
 }
