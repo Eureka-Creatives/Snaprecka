@@ -16,3 +16,8 @@ export const CheckAuthWithRedirect = async (redirectPath: string) => {
     throw redirect(redirectPath);
   }
 };
+
+export const getUserToken = () => {
+  const { token } = useAuthStore.getState();
+  return token;
+};

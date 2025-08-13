@@ -38,7 +38,7 @@ export default function Login() {
     const result = await login(data);
     if (result?.isAuthenticated) {
       toast.success(result.message || "Login successful", {
-        duration: 2000,
+        duration: 1000,
         onAutoClose: () => {
           navigate("/home");
         },

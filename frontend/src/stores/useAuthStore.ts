@@ -30,6 +30,7 @@ interface user {
 
 interface AuthState {
   isLoading: boolean;
+  isResendLoading: boolean;
   isAuthenticated: boolean;
   user: null | user;
   token: string | null;
@@ -57,6 +58,7 @@ export const useAuthStore = create<AuthState>()(
   persist(
     (set): AuthState => ({
       isAuthenticated: false,
+      isResendLoading: false,
       isLoading: false,
       user: null,
       token: null,
@@ -88,12 +90,12 @@ export const useAuthStore = create<AuthState>()(
       },
       forgotPassword: async (data: forgotPasswordRequestType) => {
         try {
-          set({ isLoading: true });
+          set({ isResendLoading: true });
           const response = await forgotPassword(data);
           set({
             isAuthenticated: false,
             token: null,
-            isLoading: false,
+            isResendLoading: false,
             email: data.email,
           });
           if (response) {
