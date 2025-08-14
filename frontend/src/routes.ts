@@ -10,6 +10,7 @@ import LandingPage from "./pages/LandingPage";
 import NotFound from "./pages/error/notFound";
 import VerifyOTP from "./pages/VerifyOTP";
 import ResetPassword from "./pages/ResetPassword";
+import AboutLandingPage from "./pages/AboutLandingPage";
 import { CheckAuth } from "./utils/authUser";
 
 export const router = createBrowserRouter([
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: LandingPage,
+      },
+      {
+        path: "about",
+        Component: AboutLandingPage,
       },
     ],
   },
