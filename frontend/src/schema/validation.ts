@@ -37,7 +37,6 @@ export const resetPasswordSchema = z.object({
     message: "Confirm Password must be at least 8 characters long",
   }),
 });
-
 export const OTPSchema = z.object({
   otp: z.string().min(6, {
     message: "OTP must be at least 6 characters long",
