@@ -1,8 +1,8 @@
 import { Button } from "./ui/button";
-import { Logout } from "iconsax-reactjs";
 import { useAuthStore } from "../stores/useAuthStore";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { MdLogout } from "react-icons/md";
 
 export function AppSidebar() {
   const { logout } = useAuthStore();
@@ -31,7 +31,7 @@ export function AppSidebar() {
             className="bg-red-500 text-white hover:bg-red-400 hover:text-white cursor-pointer w-full border-none"
             onClick={handleLogout}
           >
-            <Logout size={16} />
+            <MdLogout size={16} />
             Logout
           </Button>
         </div>
