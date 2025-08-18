@@ -4,7 +4,7 @@ import Footer from "@/components/landing/footer";
 
 export default function LandingLayout() {
   return (
-    <main className="relative">
+    <main className="relative bg-white">
       <header className="fixed top-0 right-0 z-50 px-10">
         <Navbar />
       </header>

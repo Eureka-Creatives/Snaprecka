@@ -16,7 +16,6 @@ export const resetPassword = async ({
     });
     return response.data;
   } catch (error) {
-    console.error("Error in password reset:", error);
     if (error instanceof AxiosError) {
       toast.error(error.response?.data.error || "Password reset failed");
     }

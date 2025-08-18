@@ -1,33 +1,57 @@
+import { useState, useEffect } from "react";
 import { CgSearch } from "react-icons/cg";
-import { FiPlus } from "react-icons/fi";
-import { Button } from "../ui/button";
+import { IoMdNotificationsOutline } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
+import { user } from "@/types/user/user";
+import { useUserStore } from "@/stores/useUserStore";
 
 export default function Navbar() {
+  const { getUser } = useUserStore();
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const response = await getUser();
+      console.log("User Details:", response);
+      const user = response?.user;
+      setUser(user);
+    };
+    fetchUser();
+  }, [getUser]);
+
+  const [user, setUser] = useState<user | null>(null);
   return (
-    <nav className="py-7.5 w-full max-md:px-3 pr-15 flex flex-row justify-between items-center font-dm text-black bg-white border-2 border-red-400">
+    <nav className="py-7.5 max-md:px-3 pr-15 flex flex-row justify-between items-center font-dm text-black bg-white w-full">
       <div className="">
         <h1 className="text-3xl max-md:text-xl font-bold text-black p-2.5">
           Dashboard
         </h1>
       </div>
-      <ul className="flex items-center justify-between border-2 border-green-400 w-1/2">
-        <li className="cursor-pointer bg-[#737791] flex items-center gap-2 max-md:hidden">
-          <div className="w-full">
-            <CgSearch className="text-base text-gray-600" />
-            <input
-              type="text"
-              placeholder="Search for a capsule"
-              className="bg-transparent outline-none text-sm max-md:text-sm px-2"
-            />
+      <div className="cursor-pointer bg-[#F9FAFB] rounded-lg flex items-center gap-2 max-md:hidden w-[400px]">
+        <div className="w-full flex gap-2 px-6 py-3 items-center">
+          <CgSearch className="text-base text-gray-600" />
+          <input
+            type="text"
+            placeholder="Search for a capsule"
+            className="bg-transparent outline-none text-sm max-md:text-sm px-2 w-full"
+          />
+        </div>
+      </div>
+      <div className="flex flex-row gap-6 items-center">
+        <span className="p-3 bg-[#FFFAF1] rounded-lg">
+          <IoMdNotificationsOutline className="text-xl" />
+        </span>
+        <div className="flex gap-5 items-center">
+          <span className="h-10 w-10 bg-gray-300 rounded-full"></span>
+          <div className="flex flex-row items-center justify-center py-2 gap-5">
+            <span>
+              Welcome {user?.firstName} {user?.lastName}
+            </span>
+            <span>
+              <IoIosArrowDown className="text-base" />
+            </span>
           </div>
-        </li>
-        <li className="cursor-pointer">
-          <Button className="text-sm h-9 font-light flex items-center gap-2 bg-white border-2 border-soft-blue text-gray-600">
-            <span className="max-md:hidden">Create</span>
-            <FiPlus className="text-base max-md:text-sm font-light" />
-          </Button>
-        </li>
-      </ul>
+        </div>
+      </div>
     </nav>
   );
 }

@@ -14,7 +14,6 @@ export const verifyOTP = async ({ email, otp }: OTPRequestType) => {
     );
     return response.data;
   } catch (error) {
-    console.error("Error in OTP validation:", error);
     if (error instanceof AxiosError) {
       toast.error(error.response?.data.error || "OTP validation failed");
     }

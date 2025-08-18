@@ -18,10 +18,8 @@ export const registerUser = async (formData: registerRequestType) => {
         confirmPassword: formData.confirmPassword,
       }
     );
-    console.log("Registration successful:", response.data);
     return response.data;
   } catch (error) {
-    console.error("Signup failed:", error);
     if (error instanceof AxiosError) {
       toast.error(
         error.response?.data.error || error.message || "Signup failed"

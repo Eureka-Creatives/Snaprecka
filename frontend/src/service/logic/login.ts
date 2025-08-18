@@ -9,10 +9,8 @@ export const login = async (formData: loginRequestType) => {
       email: formData.email,
       password: formData.password,
     });
-    console.log("Login successful:", response);
     return response.data;
   } catch (error) {
-    console.error("Login failed:", error);
     if (error instanceof AxiosError) {
       toast.error(
         error.response?.data.error || error.message || "error failed"
