@@ -6,9 +6,9 @@
 
 @theme inline {
   --font-dm: "DM Sans", sans-serif;
+  --font-tiempo: "Tiempo", serif;
   --color-base-color: #b1e4e3;
   --color-soft-blue: #8bb8e8;
-
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -124,6 +124,26 @@
   }
 }
 
+@font-face {
+  font-family: "Tiempo";
+  font-style: normal italic;
+  font-weight: 400 500 600 700;
+  font-display: swap;
+  src: url("/fonts/tiempos-font/TestTiemposHeadline-LightItalic.otf")
+    format("otf");
+}
+
 body {
   display: block !important;
+}
+
+.circular-gallery {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: grab;
+}
+
+.circular-gallery:active {
+  cursor: grabbing;
 }

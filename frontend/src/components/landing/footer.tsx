@@ -7,14 +7,14 @@ export default function Footer() {
 
   return (
     <footer className="py-6 px-10 font-dm">
-      <div className="bg-black text-white rounded-[50px] pt-40 h-[800px] gap-24 flex flex-col">
+      <div className="bg-black text-white rounded-[50px] pt-44 h-[800px] gap-24 flex flex-col">
         <div className="mx-20">
           <div className="flex flex-col justify-center items-center gap-16 relative">
             <Link to="/">
               <img
                 src={Logo}
                 alt="Angles Logo"
-                className="absolute -top-30 left-10 h-12 w-12"
+                className="absolute -top-30 left-10 h-20 w-20"
               />
             </Link>
             <div className="flex flex-col items-center gap-8">
