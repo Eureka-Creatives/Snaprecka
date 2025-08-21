@@ -1,16 +1,11 @@
 import CircularGallery from "../landing/CircularGallery";
+import heroBg from "@/assets/landing/bg.png";
 
 export default function Hero() {
   return (
     <section
-      className="font-dm flex min-h-screen flex-col items-center w-full justify-start pt-60 pb-5 px-10"
-      style={{
-        backgroundImage: "url('src/assets/landing/bg.png')",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
+      className={`font-dm flex min-h-screen flex-col items-center w-full justify-start pt-60 pb-5 px-10 bg-no-repeat bg-cover bg-center`}
+      style={{ backgroundImage: `url(${heroBg})` }}>
       <div className="flex flex-col justify-center items-center gap-1">
         <div className="flex flex-col justify-center items-center gap-4">
           <p className="text-3xl text-black font-tiempo italic">One Event</p>
@@ -20,8 +15,7 @@ export default function Hero() {
               height={80}
               viewBox="0 0 500 80"
               className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-50"
-              style={{ zIndex: 0 }}
-            >
+              style={{ zIndex: 0 }}>
               <ellipse
                 cx="250"
                 cy="40"
