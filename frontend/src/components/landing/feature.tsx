@@ -6,14 +6,15 @@ import {
   FaMobileAlt,
   FaSearch,
 } from "react-icons/fa";
+
 export default function Feature() {
   return (
     <section className="w-full px-10 py-32 font-dm">
       <div className="flex justify-center items-end flex-col px-5">
         <h1 className="text-6xl font-light">What we made</h1>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 pt-20 mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-20 mx-auto">
           {/* Private & Secure Feature */}
-          <div className="bg-gray-200 rounded-4xl p-1">
+          <div className="bg-gray-200 rounded-4xl p-1 rotate-45">
             <div className="py-16 px-10 border rounded-4xl bg-[url('src/assets/landing/bg3.png')] text-white flex flex-col items-center">
               <FaLock size={48} className="mb-6" />
               <h2 className="text-2xl font-semibold mb-4">Private & Secure</h2>
@@ -27,8 +28,9 @@ export default function Feature() {
               </span>
             </div>
           </div>
+
           {/* Collaboration Feature */}
-          <div className="bg-gray-200 rounded-4xl p-1">
+          <div className="bg-gray-200 rounded-4xl p-1 -rotate-45">
             <div className="py-16 px-10 border rounded-4xl bg-[url('src/assets/landing/bg3.png')] text-white flex flex-col items-center">
               <FaUsers size={48} className="mb-6" />
               <h2 className="text-2xl font-semibold mb-4">Collaboration</h2>
@@ -42,7 +44,7 @@ export default function Feature() {
             </div>
           </div>
           {/* Magic Effects Feature */}
-          <div className="bg-gray-200 rounded-4xl p-1">
+          <div className="bg-gray-200 rounded-4xl p-1 rotate-45">
             <div className="py-16 px-10 border rounded-4xl bg-[url('src/assets/landing/bg3.png')] text-white flex flex-col items-center">
               <FaMagic size={48} className="mb-6" />
               <h2 className="text-2xl font-semibold mb-4">Magic Effects</h2>
@@ -56,7 +58,7 @@ export default function Feature() {
             </div>
           </div>
           {/* Cloud Upload Feature */}
-          <div className="bg-gray-200 rounded-4xl p-1">
+          <div className="bg-gray-200 rounded-4xl p-1 -rotate-45">
             <div className="py-16 px-10 border rounded-4xl bg-[url('src/assets/landing/bg3.png')] text-white flex flex-col items-center">
               <FaCloudUploadAlt size={48} className="mb-6" />
               <h2 className="text-2xl font-semibold mb-4">Cloud Upload</h2>
@@ -73,7 +75,7 @@ export default function Feature() {
           </div>
 
           {/* Mobile Access Feature */}
-          <div className="bg-gray-200 rounded-4xl p-1">
+          <div className="bg-gray-200 rounded-4xl p-1 rotate-45">
             <div className="py-16 px-10 border rounded-4xl bg-[url('src/assets/landing/bg3.png')] text-white flex flex-col items-center">
               <FaMobileAlt size={48} className="mb-6" />
               <h2 className="text-2xl font-semibold mb-4">Mobile Access</h2>
@@ -89,7 +91,7 @@ export default function Feature() {
           </div>
 
           {/* Smart Search Feature */}
-          <div className="bg-gray-200 rounded-4xl p-1">
+          <div className="bg-gray-200 rounded-4xl p-1 -rotate-45">
             <div className="py-16 px-10 border rounded-4xl bg-[url('src/assets/landing/bg3.png')] text-white flex flex-col items-center">
               <FaSearch size={48} className="mb-6" />
               <h2 className="text-2xl font-semibold mb-4">Smart Search</h2>
