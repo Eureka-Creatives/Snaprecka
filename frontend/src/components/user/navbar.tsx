@@ -20,12 +20,10 @@ export default function Navbar() {
 
   const [user, setUser] = useState<user | null>(null);
   return (
-    <nav className="py-7.5 max-md:px-3 pr-15 flex flex-row justify-between items-center font-dm text-black bg-white w-full">
-      <div className="">
-        <h1 className="text-3xl max-md:text-xl font-bold text-black p-2.5">
-          Dashboard
-        </h1>
-      </div>
+    <nav className="py-7.5 px-6 pr-12 flex flex-row justify-between items-center font-dm text-black bg-white w-full">
+      <h1 className="text-3xl max-md:text-xl font-bold text-black p-2.5">
+        Dashboard
+      </h1>
       <div className="cursor-pointer bg-[#F9FAFB] rounded-lg flex items-center gap-2 max-md:hidden w-[400px]">
         <div className="w-full flex gap-2 px-6 py-3 items-center">
           <CgSearch className="text-base text-gray-600" />
