@@ -21,7 +21,11 @@ export const userInstance = axios.create({
 userInstance.interceptors.request.use(
   (config) => {
     const token = getUserToken();
-    console.log("Token:", token);
+
+    if (!token) {
+      window.location.href = "/auth/login";
+    }
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
