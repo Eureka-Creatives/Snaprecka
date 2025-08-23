@@ -8,7 +8,7 @@ export default function UserLayout() {
     <main className="flex flex-col min-w-screen min-h-screen font-dm container mx-auto  bg-white relative max-md:px-0">
       <div className="w-full flex flex-row justify-between top-14 h-full z-40">
         <Toaster richColors position="top-right" />
-        <div className="w-[25%] max-lg:hidden">
+        <div className="w-1/4 max-lg:hidden">
           <AppSidebar />
         </div>
         <div className="w-[84%] flex flex-col gap-8 bg-[#F9FAFB] min-h-screen relative">

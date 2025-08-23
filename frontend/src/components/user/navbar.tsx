@@ -43,7 +43,7 @@ export default function Navbar() {
         <div className="flex gap-5 items-center">
           <span className="h-10 w-10 bg-gray-300 rounded-full"></span>
           <div className="flex flex-row items-center justify-center py-2 gap-5">
-            <span>
+            <span className="inline-block truncate w-40">
               Welcome {user?.firstName} {user?.lastName}
             </span>
             <span>

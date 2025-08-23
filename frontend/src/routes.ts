@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import UserLayout from "./layout/userLayout";
-import UserHome from "./pages/user-home";
+import UserHome from "./pages/dashboard/user-home";
 import LoginScreen from "./pages/Loginscreen";
 import SignupScreen from "./pages/Signupscreen";
 import ForgotPassword from "./pages/ForgotPassword";

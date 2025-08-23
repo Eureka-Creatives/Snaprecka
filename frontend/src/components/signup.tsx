@@ -53,8 +53,7 @@ export default function Signup() {
     <div
       className={cn(
         "flex flex-col gap-6 w-full justify-center h-full items-center rounded-2xl"
-      )}
-    >
+      )}>
       <Card className="border-none shadow-none bg-transparent w-md">
         <CardHeader>
           <CardTitle className="text-4xl">Signup</CardTitle>
@@ -66,8 +65,7 @@ export default function Signup() {
               <div
                 className={`grid  grid-cols-2 gap-2 relative ${
                   errors.firstName ? "mb-4" : ""
-                }`}
-              >
+                }`}>
                 <div className="grid gap-2">
                   <Label htmlFor="firstname">Firstname</Label>
                   <Input

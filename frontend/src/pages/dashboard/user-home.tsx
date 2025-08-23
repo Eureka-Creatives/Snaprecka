@@ -72,8 +72,7 @@ export default function UserHome() {
             data.map((item) => (
               <div
                 key={item.id}
-                className="h-54 rounded-2xl bg-soft-blue/20 p-4"
-              >
+                className="h-54 rounded-2xl bg-soft-blue/20 p-4">
                 <h2>{item.title}</h2>
                 <p>{item.description}</p>
               </div>
