@@ -5,7 +5,7 @@ import CallToAction from "@/components/landing/call";
 
 export default function LandingPage() {
   return (
-    <section>
+    <section className="w-full min-h-screen">
       <Hero />
       <Feature />
       <How />

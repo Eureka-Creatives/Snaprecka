@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { InfiniteSlider } from "@/components/slider";
 import { Toaster } from "sonner";
+import { IoChevronBackOutline } from "react-icons/io5";
 import image1 from "@/assets/auth/community1.webp";
 import image2 from "@/assets/auth/community64.webp";
 import image3 from "@/assets/auth/community90.webp";
@@ -14,8 +15,11 @@ import image10 from "@/assets/auth/community55.webp";
 import image11 from "@/assets/auth/community9 (2).webp";
 import image12 from "@/assets/auth/community(3).webp";
 import image13 from "@/assets/auth/community5 (1).webp";
+import { useNavigate } from "react-router-dom";
 
 export default function AuthLayout() {
+  const navigate = useNavigate();
+
   return (
     <main className="flex justify-between w-full h-screen bg-white p-5 font-dm">
       <Toaster
@@ -26,7 +30,17 @@ export default function AuthLayout() {
           className: "text-sm",
         }}
       />
-      <div className="flex flex-row items-center justify-between w-2/5 b gap-4 rounded-lg overflow-hidden">
+      <div className="flex flex-row items-center justify-between w-2/5 b gap-4 rounded-lg overflow-hidden relative">
+        <div className="absolute top-3 left-3 z-20">
+          <button
+            className="rounded-full py-2.5 px-2.5  bg-white/95 backdrop-lg cursor-pointer"
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
+            <IoChevronBackOutline className="text-2xl" />
+          </button>
+        </div>
         <InfiniteSlider direction="vertical">
           <img
             src={image1}
